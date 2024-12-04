@@ -26,8 +26,8 @@ for i, row in enumerate(grid):
                     new_j = j+y*step
                     
                     #inspecting coords should stay in grid limits
-                    if new_i < 0 or new_i > len(row) \
-                        or new_j < 0 or new_j > len(grid):
+                    if new_i < 0 or new_i > len(grid)-1 \
+                        or new_j < 0 or new_j > len(row)-1:
                         continue
                         
                     neighbours[direction].append(grid[i+x*step][j+y*step])
