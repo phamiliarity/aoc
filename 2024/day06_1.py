@@ -7,12 +7,12 @@ def find_starting_pos():
             direction = d
             break
 
-    for i in range(len(GRID)-1):
+    for i in range(len(GRID)):
         if direction in GRID[i]:
             ipos = i
             break
             
-    for j in range(len(GRID[ipos])-1):
+    for j in range(len(GRID[ipos])):
         if direction == GRID[ipos][j]: 
             jpos = j
             break
