@@ -55,7 +55,6 @@ def get_best_step(curr_pos, curr_dir, curr_total_cost, visited):
     global TO_PROCESS, END_POS
 
     possible_steps = find_next_possible_steps(curr_pos)
-    #print(possible_steps)
 
     #determine best step from the list
     steps_info = []
@@ -124,12 +123,10 @@ END_POS = get_positions_of_char(grid, "E")[0]
 #process
 TO_PROCESS = []
 curr_pos, curr_dir, curr_total_cost = START_POS, start_dir, 0
-prev_pos = (0,0)
 visited = dict() # {(pi, pj) : (cost_from_start, parent, direction)...}
 reached_ends_from = [] #[(parent, cost), ...]
 
 while True:
-    ordered_visits.append(curr_pos)
     ci, cj = curr_pos
 
     best_step = get_best_step(curr_pos, curr_dir, curr_total_cost, visited)
@@ -140,8 +137,9 @@ while True:
         curr_pos, curr_dir, curr_total_cost = TO_PROCESS.pop(0)
         continue
 
+    parent_pos = curr_pos
     curr_pos, curr_dir, curr_total_cost = best_step
-
+    
     if curr_pos == END_POS:
         reached_ends_from.append((parent_pos, curr_total_cost))
         if len(TO_PROCESS) > 0:
@@ -149,16 +147,5 @@ while True:
             continue
 
 reached_ends_from.sort(key=lambda x:x[1])
-
-# print("MOST EFFICIENT ROUTE:")
-# ggrid = deepcopy(grid)
-# prev_step = END_POS
-# while prev_step != START_POS:
-    # _, parent, direction = visited[prev_step]
-    # pi, pj = parent
-    # ggrid[pi][pj] = direction
-    # prev_step = parent
-# print("\n".join(["".join(l) for l in ggrid]))
-
 best_score = reached_ends_from[0][1]
 print("\n", best_score)
