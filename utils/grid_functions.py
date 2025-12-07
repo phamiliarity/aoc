@@ -7,3 +7,7 @@ def get_8neighbours(ii, jj, grid):
         for nj in range(jj - 1, jj + 2)
         if (ni, nj) != (ii, jj) and 0 <= ni < rows and 0 <= nj < cols
     ]
+
+def transpose(grid):
+    return [list(row) for row in zip(*grid)]
+    
