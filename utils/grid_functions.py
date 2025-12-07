@@ -1,3 +1,12 @@
+def transpose(grid):
+    return [list(row) for row in zip(*grid)]
+
+def find_first_char(grid, char):
+    m = len(grid)
+    n = len(grid[0])
+    return next(((ii, jj) for ii in range(m)
+                 for jj in range(n) if grid[ii][jj] == char), None)
+
 def get_8neighbours(ii, jj, grid):
     rows = len(grid)
     cols = len(grid[0]) if rows else 0
@@ -8,6 +17,5 @@ def get_8neighbours(ii, jj, grid):
         if (ni, nj) != (ii, jj) and 0 <= ni < rows and 0 <= nj < cols
     ]
 
-def transpose(grid):
-    return [list(row) for row in zip(*grid)]
-    
+def print_grid(grid):
+    print("\n".join(map(str, grid)))
